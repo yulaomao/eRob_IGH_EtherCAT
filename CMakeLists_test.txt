@@ -1,0 +1,42 @@
+cmake_minimum_required(VERSION 3.10)
+project(test_motor_control)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Find required packages
+find_package(Threads REQUIRED)
+
+# Include directories
+include_directories(
+  /tmp/mock_ethercat/include
+  src/
+)
+
+# Mock EtherCAT library
+add_library(mock_ethercat /tmp/mock_ethercat/mock_ecrt.cpp)
+
+# Motor controller library
+add_library(motor_controller
+  src/motor_controller.cpp
+  src/motor_controller.h
+)
+
+target_link_libraries(motor_controller 
+  mock_ethercat
+  Threads::Threads
+)
+
+# Three-axis arm library
+add_library(three_axis_arm
+  src/three_axis_arm.cpp
+  src/three_axis_arm.h
+)
+
+target_link_libraries(three_axis_arm 
+  motor_controller
+)
+
+# Test API executable
+add_executable(test_api src/test_api.cpp)
+target_link_libraries(test_api three_axis_arm motor_controller)

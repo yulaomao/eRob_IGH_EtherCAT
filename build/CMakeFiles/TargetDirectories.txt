@@ -1,3 +1,0 @@
-/home/runner/work/eRob_IGH_EtherCAT/eRob_IGH_EtherCAT/build/CMakeFiles/igh_driver.dir
-/home/runner/work/eRob_IGH_EtherCAT/eRob_IGH_EtherCAT/build/CMakeFiles/edit_cache.dir
-/home/runner/work/eRob_IGH_EtherCAT/eRob_IGH_EtherCAT/build/CMakeFiles/rebuild_cache.dir
